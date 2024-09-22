@@ -1,5 +1,6 @@
 import turtle
 from turtle import Turtle
+from time import sleep
 import random
 RANK=random.randint(0, 220)
 RAN = random.randint(-280, 280)
@@ -8,9 +9,13 @@ UP, DOWN, LEFT, RIGHT = 90, 270, 180, 0
 SNAKE_SPEED = 15
 POSITION = [(0, 0), (-20, 0), (-40, 0)]
 SCORE=0
+FONT= ("Arial",15,"normal")
+ALIGN = "center"
 class Snake:
     def __init__(self):
+        self.setup=True
         self.total= []
+    def create_snake(self):
         for i in POSITION:
             tim = Turtle("circle")
             tim.color("black")
@@ -50,3 +55,18 @@ class Snake:
     def down(self):
         if self.head.heading() != UP:
             self.head.setheading(270)
+
+    def reset(self):
+        self.setup=True
+        self.tap=Turtle()
+        self.tap.hideturtle()
+        self.tap.color("red")
+        self.tap.goto(0, 0)
+        self.tap.write("GAME OVER!", move=False, align=ALIGN, font=FONT)
+        self.tap.clear()
+        for j in self.total:
+            j.goto(1000,1000)
+        self.total.clear()
+        self.create_snake()
+
+
