@@ -6,19 +6,20 @@ from score import Score
 from gamebox import Box
 sc=Screen()
 box=Box()
+sc.colormode(255)
 sc.title("Snake Game")
-sc.setup(640,640)
+sc.setup(640,650)
 sc.tracer(0)
 snake = Snake()
 food=Food()
 score=Score()
+snake.create_snake()
 sc.listen()
 sc.onkey(snake.up , "Up")
 sc.onkey(snake.down , "Down")
 sc.onkey(snake.left,"Left")
 sc.onkey(snake.right, "Right")
-game=True
-while game:
+while snake.setup:
     sc.update()
     sleep(0.1)
     snake.move()
@@ -28,14 +29,20 @@ while game:
         food.refresh()
         snake.new()
     #wall collision
-    if (snake.head.xcor() > 288 or snake.head.xcor()< -288 ) or (snake.head.ycor() > 288 or snake.head.ycor()< -288):
+    if (snake.head.xcor() > 287 or snake.head.xcor()< -287 ) or (snake.head.ycor() > 287 or snake.head.ycor()< -287):
+        sleep(2)
+        snake.reset()
         score.end()
-        game=False
+
     #body collision
-    for inch in range(1,len(snake.total)):
+    for inch in range(1, len(snake.total)):
         if snake.head.distance(snake.total[inch]) < 10:
+            sleep(2)
+            snake.reset()
             score.end()
-            game=False
+
+
+
 
 
 
