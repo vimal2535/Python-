@@ -1,3 +1,5 @@
+#Install pyperclip package so you can copy the password to clipboard
+
 from tkinter import *
 from tkinter import messagebox
 from random import randint,shuffle,choice
@@ -46,6 +48,9 @@ def save():
                 json.dump(data,file,indent=2)
         else:
             new_data.update(data)
+
+            with open("manager.json","w") as file:
+                json.dump(new_data,file,indent=2)
         finally:
             web_entry.delete(0, END)
             password_entry.delete(0, END)
