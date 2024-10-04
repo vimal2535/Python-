@@ -66,7 +66,7 @@ def search_button():
         if name in web_search:
             saved_email = web_search[name]["Email"]
             saved_password = web_search[name]["Password"]
-            messagebox.showinfo(title="Your Credentials",message=f"Email: {saved_email}\nPassword: {saved_password}")
+            messagebox.showinfo(title=f"Your {name} Credentials",message=f"Email: {saved_email}\nPassword: {saved_password}")
         else:
             messagebox.showerror(title="Warning!",message=f"No details for {name} exists!")
 
